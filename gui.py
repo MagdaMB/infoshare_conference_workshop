@@ -62,7 +62,7 @@ class Window:
         :param event: `<class 'tkinter.Event'>`
         :param color: str
         """
-        self.canvas.change_colour_on_click(event, color)
+        self.canvas.change_colour(event, color)
 
 
 class CanvasGrid(tk.Canvas):
@@ -122,9 +122,9 @@ class CanvasGrid(tk.Canvas):
             y += CanvasGrid.START_Y
 
 
-    def change_colour_on_click(self, event, color):
+    def change_colour(self, event, color):
         """
-        Changes colour of a cell when user clicks on it.
+        Changes colour of a cell.
         :param event: `<class 'tkinter.Event'>`
         """
         x, y = CanvasGrid.find_rect_coordinates(event.x, event.y)
