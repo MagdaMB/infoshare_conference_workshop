@@ -24,7 +24,7 @@ class Cell:
         #@ TODO: loop over neighbourhood
         # don't check ourself
         #@ TODO: check the state of a neighbour - if it's alive add it
-        raise NotImplementedError
+        pass
 
     def apply_conway_rules(self, cells):
         """
@@ -33,3 +33,4 @@ class Cell:
         :return: True or False (cell lives or dies)
         """
         #@ TODO: check Conway's rules
+        pass

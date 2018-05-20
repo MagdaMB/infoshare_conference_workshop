@@ -51,10 +51,11 @@ class Window:
         """
         self.canvas.run_game()
         self.canvas.paint_grid()
-        #@ TODO: call update periodically
+        # @ TODO: call update periodically
 
     def stop(self):
-        raise NotImplementedError
+        # @ TODO: how to stop this?!
+        pass
 
     def change_colour_on_click(self, event, color='green'):
         """
@@ -141,14 +142,14 @@ class CanvasGrid(tk.Canvas):
         except IndexError:
             return
 
-    def paint_grid(self):
+    def paint_grid(self, alive_color='green'):
         """
         Color rectangles to specified color that mimics its state.
         """
         for cell in chain.from_iterable(self.cells):
             if cell.next_status != cell.alive:
                 if cell.next_status:
-                    self.itemconfig(self.grid[cell.x][cell.y], fill='green')
+                    self.itemconfig(self.grid[cell.x][cell.y], fill=alive_color)
                 else:
                     self.itemconfig(self.grid[cell.x][cell.y], fill='white')
                 cell.toggle_status()
