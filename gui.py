@@ -51,7 +51,7 @@ class Window:
         """
         self.canvas.run_game()
         self.canvas.paint_grid()
-        self.game_id = self.root.after(200, self.update)
+        #@ TODO: call update periodically
 
     def stop(self):
         raise NotImplementedError
@@ -82,7 +82,8 @@ class CanvasGrid(tk.Canvas):
         Applies Conway rules for every cell in grid.
         """
         for cell in chain.from_iterable(self.cells):
-            if cell.change_status(self.cells):
+            cell_dies = cell.apply_conway_rules(self.cells)
+            if cell_dies:
                 cell.next_status = not cell.alive
             else:
                 cell.next_status = cell.alive
@@ -120,7 +121,6 @@ class CanvasGrid(tk.Canvas):
 
             x = CanvasGrid.START_X
             y += CanvasGrid.START_Y
-
 
     def change_colour(self, event, color):
         """

@@ -8,37 +8,28 @@ class Cell:
         self.x = x
         self.y = y
 
-    def __repr__(self):
-        return f'Cell({self.x}, {self.y}'
-
     def toggle_status(self):
         self.alive = not self.alive
 
-    def change_status(self, cells):
+    def count_alive_neigbhours(self, cells):
         """
-        Counts alive neighbours and based on that applies Conways rule
+        Counts alive neighbours.
         :param cells: list of cells available in grid
-        :return: True or False (cell lives or dies)
+        :return: int
         """
-        num_alive = 0
+        #@ TODO: add variable that will represent amount of live neighbours
         # check Moore's neighbourhood (8 neighbours)
         # which are the cells that are horizontally,
         # vertically or diagonally adjacent
-        for i in (self.x - 1, self.x, self.x + 1):
-            for j in (self.y - 1, self.y, self.y + 1):
-                # don't check ourself
-                if i == self.x and j == self.y:
-                    continue
-                try:
-                    if cells[i][j].alive:
-                        num_alive += 1
-                except IndexError:
-                    logging.log(
-                        logging.WARNING,
-                        f'{self} doesn\'t have neighbour at x:{i} y:{j}'
-                    )
+        #@ TODO: loop over neighbourhood
+        # don't check ourself
+        #@ TODO: check the state of a neighbour - if it's alive add it
+        raise NotImplementedError
 
-        if self.alive:
-            return not (num_alive == 2 or num_alive == 3)
-        else:
-            return num_alive == 3
+    def apply_conway_rules(self, cells):
+        """
+        Verify amount of alive neighbours against Conways rule.
+        :param cells: list of cells available in grid
+        :return: True or False (cell lives or dies)
+        """
+        #@ TODO: check Conway's rules
