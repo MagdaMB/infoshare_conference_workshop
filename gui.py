@@ -49,7 +49,7 @@ class Window:
         """
         Updates game screen.
         """
-        self.canvas.run_game()
+        self.canvas.update_cells()
         self.canvas.paint_grid()
         # @ TODO: call update periodically
 
@@ -78,7 +78,7 @@ class CanvasGrid(tk.Canvas):
         self.grid = []
         self.fill_grid()
 
-    def run_game(self):
+    def update_cells(self):
         """
         Applies Conway rules for every cell in grid.
         """
@@ -147,12 +147,13 @@ class CanvasGrid(tk.Canvas):
         Color rectangles to specified color that mimics its state.
         """
         for cell in chain.from_iterable(self.cells):
-            if cell.next_status != cell.alive:
+            current_status = cell.alive
+            if cell.next_status != current_status:
                 if cell.next_status:
                     self.itemconfig(self.grid[cell.x][cell.y], fill=alive_color)
                 else:
                     self.itemconfig(self.grid[cell.x][cell.y], fill='white')
-                cell.toggle_status()
+                cell.alive = cell.next_status
 
 
 if __name__ == '__main__':

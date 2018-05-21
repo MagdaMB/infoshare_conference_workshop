@@ -8,9 +8,6 @@ class Cell:
         self.x = x
         self.y = y
 
-    def toggle_status(self):
-        self.alive = not self.alive
-
     def count_alive_neigbhours(self, cells):
         """
         Counts alive neighbours.
